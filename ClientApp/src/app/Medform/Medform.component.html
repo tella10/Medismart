@@ -133,7 +133,7 @@
                 <div class='form-group internal'>
                   <label class='control-label col-md-3' for='id_slide'>Slide-outs</label>
                   <div class='make-switch' data-off-label='NO' data-on-label='YES' id='id_slide_switch'>
-                    <input id='id_slide' type='checkbox' value='chk_hydro' formControlName="slideOut" >
+                    <input id='id_slide' type='checkbox' value='chk_hydro' name="SlideOut" #SlideOut="ngModel" [(ngModel)]="data.medForm.slideOut" >
                   </div>
                 </div>
               </div>
