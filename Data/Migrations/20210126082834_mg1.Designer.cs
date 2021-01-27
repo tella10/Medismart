@@ -4,14 +4,16 @@ using Medismart.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Medismart.Migrations
 {
     [DbContext(typeof(MedismartContext))]
-    partial class MedismartContextModelSnapshot : ModelSnapshot
+    [Migration("20210126082834_mg1")]
+    partial class mg1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,8 +86,8 @@ namespace Medismart.Migrations
                             Id = 1,
                             Accomodation = "RV",
                             Alias = "Mr",
-                            CheckOut = new DateTime(2021, 1, 26, 9, 37, 7, 503, DateTimeKind.Local).AddTicks(1407),
-                            Checkin = new DateTime(2021, 1, 26, 9, 37, 7, 501, DateTimeKind.Local).AddTicks(1084),
+                            CheckOut = new DateTime(2021, 1, 26, 9, 28, 32, 187, DateTimeKind.Local).AddTicks(7743),
+                            Checkin = new DateTime(2021, 1, 26, 9, 28, 32, 185, DateTimeKind.Local).AddTicks(6726),
                             Comments = "This is comment",
                             Email = "Medismarts@gmail.com",
                             EquipmentType = "Travel trailer",
@@ -96,7 +98,7 @@ namespace Medismart.Migrations
                             LastName = "Tella",
                             Pet = false,
                             Phone = 123455,
-                            RequiredService = "Water",
+                            RequiredService = "water",
                             SlideOut = false
                         });
                 });

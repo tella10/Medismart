@@ -30,13 +30,13 @@ namespace Medismart.Data
                     GuestOld = 1,
                     GuestMiddle = 1,
                     GuestChild = 1,
-                    Email = "Medismartsgmail.com",
+                    Email = "Medismarts@gmail.com",
                     Phone = 123455,
-                    Checkin = DateTime.UtcNow,
-                    CheckOut = DateTime.UtcNow,
-                    EquipmentType = "Hydro",
+                    Checkin = DateTime.Now,
+                    CheckOut = DateTime.Now,
+                    EquipmentType = "Travel trailer",
                     SlideOut = false,
-                    RequiredService = "water",
+                    RequiredService = "Water",
                     Pet = false,
                     Comments = "This is comment"
                 });

@@ -5,11 +5,11 @@
         <h5>Medismarts House Reservation</h5>
       </div>
       <div class='panel-body'>
-        <form class='form-horizontal' (ngSubmit)="onSubmit()" #form="ngForm" role='form'>
+        <form class='form-horizontal' [formGroup]="ResForm" (ngSubmit)="Save()">
           <div class='form-group'>
             <label class='control-label col-md-2 col-md-offset-2' for='id_accomodation'>Accomodation</label>
             <div class='col-md-2'>
-              <select class='form-control' name="Alias" #Alias="ngModel" [(ngModel)]="data.medForm.alias">
+              <select class='form-control' formControlName="accomodation">
                 <option>RV</option>
                 <option>Tent</option>
                 <option>Cabin/Lodging</option>
@@ -21,7 +21,7 @@
             <div class='col-md-8'>
               <div class='col-md-2'>
                 <div class='form-group internal'>
-                  <select class='form-control' id='id_title'>
+                  <select class='form-control' id='id_title' formControlName="alias">
                     <option>Mr</option>
                     <option>Ms</option>
                     <option>Mrs</option>
@@ -32,14 +32,18 @@
               </div>
               <div class='col-md-3 indent-small'>
                 <div class='form-group internal'>
-                  <input class='form-control' id='id_first_name' name="FirstName" #FirstName="ngModel" [(ngModel)]="data.medForm.firstName" placeholder='First Name' type='text' required>
-                  <div class="validation-error" *ngIf="FirstName.invalid"> Invalid Input</div>               
+                  <input class='form-control' id='id_first_name' name="firstName" formControlName="firstName" placeholder='First Name' type='text' required>
+                  <div *ngIf="submitted && ResForm.controls.firstName.errors" class="text-danger">  
+                    <div *ngIf="ResForm.controls.firstName.errors.required">First Name is required</div>  
+                  </div>               
                 </div>
               </div>
               <div class='col-md-3 indent-small'>
                 <div class='form-group internal'>
-                  <input class='form-control' id='id_first_name' name="FirstName" #FirstName="ngModel" [(ngModel)]="data.medForm.firstName" placeholder='First Name' type='text' required>
-                  <div class="validation-error" *ngIf="FirstName.invalid"> Invalid Input</div>               
+                  <input class='form-control' id='id_last_name' name="lastName" formControlName="lastName" placeholder='Last Name' type='text' required>
+                  <div *ngIf="submitted && ResForm.controls.lastName.errors" class="text-danger">  
+                    <div *ngIf="ResForm.controls.lastName.errors.required">Last Name is required</div>  
+                  </div>              
                 </div>
               </div>
             </div>
@@ -47,19 +51,28 @@
           <div class='form-group'>
             <label class='control-label col-md-2 col-md-offset-2' for='id_adults'>Guests</label>
             <div class='col-md-8'>
-              <div class='col-md-2'>
+              <div class='col-md-3 indent-small'>
                 <div class='form-group internal'>
-                  <input class='form-control col-md-8' id='id_adults' name="GuesOld" #GuestOld="ngModel" [(ngModel)]="data.medForm.guestOld" placeholder='18+ years' type='number'>
+                  <input class='form-control col-md-8' id='id_adults' formControlName="guestOld" placeholder='18+ years' type='number' required>
+                  <div *ngIf="submitted && ResForm.controls.guestOld.errors" class="text-danger">  
+                    <div *ngIf="ResForm.controls.guestOld.errors.required">Number is invalid</div>  
+                  </div>
                 </div>
               </div>
               <div class='col-md-3 indent-small'>
                 <div class='form-group internal'>
-                  <input class='form-control' id='id_children' name="GuestMiddle" #GuestMiddle="ngModel" [(ngModel)]="data.medForm.guestMiddle"  placeholder='2-17 years' type='number'>
+                  <input class='form-control' id='id_children' formControlName="guestMiddle"   placeholder='2-17 years' type='number' required>
+                  <div *ngIf="submitted && ResForm.controls.guestMiddle.errors" class="text-danger">  
+                    <div *ngIf="ResForm.controls.guestMiddle.errors.required">Number is invalid</div>  
+                  </div>
                 </div>
               </div>
               <div class='col-md-3 indent-small'>
                 <div class='form-group internal'>
-                  <input class='form-control' id='id_children_free' name="GuestChild" #GuestChild="ngModel" [(ngModel)]="data.medForm.guestChild" placeholder='&lt; 2 years' type='number'>
+                  <input class='form-control' id='id_children_free' formControlName="guestChild" placeholder='&lt; 2 years' type='number' required>
+                  <div *ngIf="submitted && ResForm.controls.guestChild.errors" class="text-danger">  
+                    <div *ngIf="ResForm.controls.guestChild.errors.required">Number is invalid</div>  
+                  </div>
                 </div>
               </div>
             </div>
@@ -69,14 +82,18 @@
             <div class='col-md-6'>
               <div class='form-group'>
                 <div class='col-md-11'>
-                  <input class='form-control' id='id_email' name="Email" #Email="ngModel" [(ngModel)]="data.medForm.email" placeholder='E-mail' type='text' required>
-                  <div class="validation-error" *ngIf="Email.invalid"> Invalid Input</div>  
+                  <input class='form-control' id='id_email' formControlName="email" placeholder='E-mail' type='text' required>
+                  <div *ngIf="submitted && ResForm.controls.email.errors" class="text-danger">  
+                    <div *ngIf="ResForm.controls.email.errors.required">Email is required</div>  
+                 </div>
               </div>
               </div>
               <div class='form-group internal'>
                 <div class='col-md-11'>
-                  <input class='form-control' id='id_phone' name="Phone" #Phone="ngModel" [(ngModel)]="data.medForm.phone"  placeholder='Phone: (xxx) - xxx xxxx' type='text' required>
-                  <div class="validation-error" *ngIf="Phone.invalid"> Invalid Input</div>  
+                  <input class='form-control' id='id_phone' formControlName="phone"  placeholder='Phone: (xxx) - xxx xxxx' type='text' required>
+                  <div *ngIf="submitted && ResForm.controls.phone.errors" class="text-danger">  
+                    <div *ngIf="ResForm.controls.phone.errors.required">Phone Number is required</div>  
+                 </div> 
                </div>
               </div>
             </div>
@@ -86,13 +103,13 @@
             <div class='col-md-8'>
               <div class='col-md-3'>
                 <div class='form-group internal input-group'>
-                  <input type="datetime-local" id='id_checkin' name="Checkin" #Checkin="ngModel" [(ngModel)]="data.medForm.checkin" >
+                  <input type="datetime-local" id='id_checkin' formControlName="checkin" >
                 </div>
               </div>
               <label class='control-label col-md-2 col-md-offset-2'  for='id_checkout'>Checkout</label>
               <div class='col-md-3'>
                 <div class='form-group internal input-group'>
-                  <input type="datetime-local" id='id_checkout' name="CheckOut" #CheckOut="ngModel" [(ngModel)]="data.medForm.checkOut">
+                  <input type="datetime-local" id='id_checkout' formControlName="checkOut">
                 </div>
               </div>
             </div>
@@ -102,7 +119,7 @@
             <div class='col-md-8'>
               <div class='col-md-3'>
                 <div class='form-group internal'>
-                  <select class='form-control' name="EquipmentType" #EquipmentType="ngModel" [(ngModel)]="data.medForm.equipmentType" id='id_equipment'>
+                  <select class='form-control' formControlName="equipmentType" id='id_equipment'>
                     <option>Travel trailer</option>
                     <option>Fifth wheel</option>
                     <option>RV/Motorhome</option>
@@ -116,7 +133,7 @@
                 <div class='form-group internal'>
                   <label class='control-label col-md-3' for='id_slide'>Slide-outs</label>
                   <div class='make-switch' data-off-label='NO' data-on-label='YES' id='id_slide_switch'>
-                    <input id='id_slide' type='checkbox' value='chk_hydro' name="SlideOut" #SlideOut="ngModel" [(ngModel)]="data.medForm.slideOut" >
+                    <input id='id_slide' type='checkbox' value='chk_hydro' formControlName="slideOut" >
                   </div>
                 </div>
               </div>
@@ -125,7 +142,7 @@
           <div class='form-group'>
             <label class='control-label col-md-2 col-md-offset-2' for='id_service'>Required Service</label>
             <div class='col-md-8'>
-              <select class='multiselect' id='id_service' multiple='multiple' name="RequiredService" #RequiredService="ngModel" [(ngModel)]="data.medForm.requiredService" >
+              <select class='multiselect' id='id_service' multiple='multiple' formControlName="requiredService">
                 <option value='hydro'>Hydro</option>
                 <option value='water'>Water</option>
                 <option value='sewer'>Sewer</option>
@@ -136,25 +153,74 @@
             <label class='control-label col-md-2 col-md-offset-2' for='id_pets'>Pets</label>
             <div class='col-md-8'>
               <div class='make-switch' data-off-label='NO' data-on-label='YES' id='id_pets_switch'>
-                <input id='id_pets' type='checkbox' value='chk_hydro' name="Pet" #Pet="ngModel" [(ngModel)]="data.medForm.pet">
+                <input id='id_pets' type='checkbox' value='chk_hydro' formControlName="pet">
               </div>
             </div>
           </div>
           <div class='form-group'>
             <label class='control-label col-md-2 col-md-offset-2' for='id_comments'>Comments</label>
             <div class='col-md-6'>
-              <textarea class='form-control' id='id_comments' name="Comments" #Comments="ngModel" [(ngModel)]="data.medForm.comments" placeholder='Additional comments' rows='3'></textarea>
-              <div class="validation-error" *ngIf="Comments.invalid"> Invalid Input</div>         
+              <textarea class='form-control' id='id_comments' formControlName="comments" placeholder='Additional comments' rows='3'></textarea>
+              <div *ngIf="submitted && ResForm.controls.comments.errors" class="text-danger">  
+                <div *ngIf="ResForm.controls.comments.errors.required">Message is required</div>  
+             </div>  
             </div>
           </div>
           <div class='form-group'>
             <div class='col-md-offset-4 col-md-3'>
-              <button class='btn-lg btn-primary' type='submit' [disabled]="!form.form.valid">Request Reservation</button>
+              <button class='btn-lg btn-primary' type='submit'>Reserve</button>
             </div>
             <div class='col-md-3'>
               <button class='btn-lg btn-danger' style='float:right' type='reset'>Reset</button>
             </div>
           </div>
+
+
+          <div class="row">  
+            <table class="table table-striped">  
+              <tr>  
+                <td>Id</td>  
+                <td>Accomodation</td>     
+                <td>Alias</td>  
+                <td>FirstName</td>  
+                <td>LastName</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>GuestOld</td>
+                <td>GuestMiddle</td>
+                <td>GuestChild</td>
+                <td>Checkin</td>
+                <td>CheckOut</td>
+                <td>Equipment Type</td>
+                <td>Slide Outs</td>
+                <td>Required Service</td>
+                <td>Pets</td>
+                <td>Comments</td> 
+              </tr>  
+            
+              <tr *ngFor="let d of data">  
+                <td>{{d.id}}</td>  
+                <td>{{d.accomodation}}</td>  
+                <td>{{d.alias}}</td>  
+                <td>{{d.firstName}}</td>  
+                <td>{{d.lastName}}</td>  
+                <td>{{d.email}}</td>  
+                <td>{{d.phone}}</td>  
+                <td>{{d.guestOld}}</td>  
+                <td>{{d.guestMiddle}}</td>  
+                <td>{{d.guestChild}}</td>  
+                <td>{{d.checkin}}</td>  
+                <td>{{d.checkOut}}</td>  
+                <td>{{d.equipmentType}}</td>  
+                <td>{{d.slideOut}}</td>  
+                <td>{{d.requiredService}}</td>  
+                <td>{{d.pet}}</td>  
+                <td>{{d.comments}}</td>  
+                <td><a (click)="EditData(d)" class="btn btn-warning">Edit</a></td>  
+                <td><a (click)="deleteData(d.id)" class="btn btn-danger">Delete</a></td>    
+              </tr>  
+            </table>  
+          </div>  
         </form>
       </div>
     </div>

@@ -22,6 +22,16 @@ namespace Medismart
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("Cors", builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }));
+
+            
+
             services.AddDbContext<MedismartContext>( cgf => {
                 cgf.UseSqlServer(Configuration.GetConnectionString("MedismartConnectionString"));
             });
@@ -47,6 +57,7 @@ namespace Medismart
                 app.UseHsts();
             }
 
+            app.UseCors("Cors");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
